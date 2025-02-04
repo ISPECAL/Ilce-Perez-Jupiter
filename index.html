@@ -10,10 +10,10 @@
 
 
 <body>
-    <h1> Ilce's Portfolio</h1>
+    <h1 id="titlePage"> Ilce's Portfolio </h1>
 
     <nav class="navbar">
-        <ul>
+        <ul id="tope">
 
             <li><a href="#About"> About </a></li>
             <li><a href="#Experience"> Experience </a></li>
@@ -122,12 +122,12 @@
 
 
                 <label for="usersMessage">Your Message:</label>
-                <textarea name="usersMessage" id="usersMessage" required></textarea>
+                <textarea name="usersMessage" id="usersMessage" required id="message"></textarea>
 
 
-                <button id=buttonSubmit type="submit" onclick="formSubmit()" value="Submit"
-                    style="height: 25px; width: 100px"> Submit</button>
-
+                <button id=buttonSubmit class="magneto" type="submit" onclick="formSubmit()" value="Submit"> Submit
+                </button>
+                <div id="debugger"></div>
             </form>
 
         </section>
@@ -141,11 +141,18 @@
 
         </section>
 
+
+
         <footer></footer>
 
         <script src="js/index.js">
         </script>
 
 </body>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
 
 </html>

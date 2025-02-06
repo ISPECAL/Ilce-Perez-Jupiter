@@ -1,69 +1,72 @@
-const footer = document.querySelector('footer');
-
+// Select footer and append copyright
+const footer = document.querySelector("footer");
 const today = new Date();
-
 const thisYear = today.getFullYear();
+const copyright = document.createElement("p");
+copyright.textContent = `© ${thisYear} Ilce Perez. All rights reserved.`;
+footer.appendChild(copyright);
 
-const copyright = document.createElement('p');
-
-copyright.innerHTML = '<p>   ©' + thisYear + ' Ilce Perez. All rights reserved.'
-
-document.body.appendChild(copyright);
-
-
-const skills = ["Javascript", "Python", "CSS", "HTML"];
-
+// Ensure skills list exists before appending skills
+const skills = ["JavaScript", "Python", "CSS", "HTML"];
+//const skillsListElem = document.querySelector("#skillsSection ul");
 const skillsListElem = document.getElementById("skillsSection");
 
-
-
-for (let i = 0; i < skills.length; i++) {
-
-    let skill = document.createElement('li');
-
-    skill.textContent = skills[i];
-
-    skillsListElem.appendChild(skill);
-
+if (skillsListElem) {
+    skills.forEach((skill) => {
+        let skillItem = document.createElement("li");
+        skillItem.textContent = skill;
+        skillsListElem.appendChild(skillItem);
+    });
 }
-/* Working on*/
 
+// Wait function using Promises
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Handle form submission asynchronously
 document.addEventListener("DOMContentLoaded", function () {
-    const messageForm = document.forms['leave_message'];
+    const messageForm = document.forms["leave_message"];
 
-    messageForm.addEventListener('submit', function (event) {
+    messageForm.addEventListener("submit", async function (event) {
         event.preventDefault();
-        console.log(event)
+
+        console.log("Processing message...");
+
+        // Simulated delay for async behavior
+        await delay(500);
+
         const usersName = event.target.usersName.value;
         const usersEmail = event.target.usersEmail.value;
         const usersMessage = event.target.usersMessage.value;
 
-        console.log('Name:', usersName);
-        console.log('Email:', usersEmail);
-        console.log('Message:', usersMessage);
+        console.log("Name:", usersName);
+        console.log("Email:", usersEmail);
+        console.log("Message:", usersMessage);
 
-        const messageSection = document.getElementById('messages');
-        const messageList = messageSection.querySelector('ul');
+        const messageSection = document.getElementById("messages");
+        const messageList = messageSection.querySelector("ul");
 
-        const newMessage = document.createElement('li');
+        const newMessage = document.createElement("li");
 
-        const userLink = document.createElement('a');
+        const userLink = document.createElement("a");
         userLink.href = `mailto:${usersEmail}`;
         userLink.textContent = usersName;
 
-        const messageSpan = document.createElement('span');
+        const messageSpan = document.createElement("span");
         messageSpan.textContent = `: ${usersMessage}`;
 
         newMessage.appendChild(userLink);
         newMessage.appendChild(messageSpan);
 
-        const removeButton = document.createElement('button');
-        removeButton.type = 'button';
-        removeButton.textContent = 'Remove';
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "Remove";
 
-        removeButton.addEventListener('click', function () {
-            const entry = removeButton.parentNode;
-            entry.remove();
+        removeButton.addEventListener("click", async function () {
+            console.log("Removing message...");
+            await delay(300); // Simulated async delay before removal
+            removeButton.parentNode.remove();
         });
 
         newMessage.appendChild(removeButton);
@@ -74,3 +77,45 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Lesson 
+const username = 'ISPECAL';
+
+// Fetch GitHub repositories
+fetch(`https://api.github.com/users/${username}/repos`)
+    .then(response => {
+        // Check if the response is ok
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Parse JSON from the response
+        return response.json();
+    })
+    .then(data => {
+        // Store the repositories in a variable
+        const repositories = data;
+
+        // Log the repositories to see the data structure
+        console.log(repositories);
+
+        // Select the project section by id
+        const projectSection = document.getElementById('projects-section');
+
+        // Select the project list inside the project section
+        const projectList = projectSection.querySelector('ul');
+
+        // Loop through the repositories array
+        repositories.forEach(repo => {
+            // Create a new list item element
+            const project = document.createElement('li');
+
+            // Set the text of the list item to the repository's name
+            project.innerText = repo.name;
+
+            // Append the new list item to the project list
+            projectList.appendChild(project);
+        });
+    })
+    .catch(error => {
+        // Catch and handle any errors
+        console.error('There was a problem with the fetch operation:', error);
+    });

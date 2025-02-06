@@ -2,18 +2,15 @@
 <html>
 
 <head>
-
     <link rel="stylesheet" href="css/index.css" />
-
 </head>
 
 
-
 <body>
-    <h1> Ilce's Portfolio</h1>
+    <h1 id="titlePage"> Ilce's Portfolio </h1>
 
     <nav class="navbar">
-        <ul>
+        <ul id="tope">
 
             <li><a href="#About"> About </a></li>
             <li><a href="#Experience"> Experience </a></li>
@@ -38,8 +35,7 @@
         <section id="Experience">
             <h2>Experience</h2>
 
-            <div class=" flex-container">
-
+            <div class="flex-container">
 
                 <div>
                     <h3>Javascript</h3>
@@ -56,15 +52,17 @@
 
         </section>
 
-
-
-
         <section id="Projects">
             <h2> Projects</h2>
+            <div id="projects-section">
+                <h2 id="subtitleProjects">My GitHub Repositories</h2>
 
-            <ul>
 
-            </ul>
+                <ul class="flex-container">
+
+                </ul>
+
+            </div>
         </section>
 
 
@@ -76,7 +74,6 @@
 
 
             <ul id="skillsSection">
-
             </ul>
 
         </section>
@@ -122,11 +119,11 @@
 
 
                 <label for="usersMessage">Your Message:</label>
-                <textarea name="usersMessage" id="usersMessage" required></textarea>
+                <textarea name="usersMessage" id="usersMessage" required id="message"></textarea>
 
 
-                <button id=buttonSubmit type="submit" onclick="formSubmit()" value="Submit"
-                    style="height: 25px; width: 100px"> Submit</button>
+                <button id=buttonSubmit class="magneto" type="submit" onclick="formSubmit()" value="Submit"> Submit
+                </button>
 
             </form>
 
@@ -141,11 +138,18 @@
 
         </section>
 
+
+
         <footer></footer>
 
         <script src="js/index.js">
         </script>
 
 </body>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
 
 </html>

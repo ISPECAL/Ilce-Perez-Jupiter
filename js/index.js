@@ -26,7 +26,9 @@ function delay(ms) {
 
 // Handle form submission asynchronously
 document.addEventListener("DOMContentLoaded", function () {
-    const messageForm = document.forms["leave_message"];
+    const messageForm = document.forms[0];
+
+    console.log(messageForm)
 
     messageForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -108,7 +110,24 @@ fetch(`https://api.github.com/users/${username}/repos`)
             // Create a new list item element
             const project = document.createElement('li');
 
-            // Set the text of the list item to the repository's name
+            // Create a new anchor element
+            //Link not clickable, need to fix<<<<<<
+            const link = document.createElement('a');
+
+            // Set the href attribute to the repository's URL
+            link.href = repo.html_url;
+
+            // Set the link's text to the repository's name
+            link.innerText = repo.name;
+
+            //open link in new tab
+            link.target = '_blank';
+
+            // Append the link to the list item
+            project.appendChild(link);
+
+
+            // Set text of the list item to the repository's name
             project.innerText = repo.name;
 
             // Append the new list item to the project list
